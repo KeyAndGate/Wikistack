@@ -1,6 +1,6 @@
 var Sequelize = require('sequelize')
 var db = new Sequelize('postgres://localhost:5432/wikistack', {
-    // logging: false
+    logging: false
 })
 
 var Page = db.define('page', {
@@ -18,7 +18,7 @@ var Page = db.define('page', {
     content: {
         type: Sequelize.TEXT,
         allowNull: false,
-        defaultValue: 'this article is a stub, you can help by expanding it.'
+        //defaultValue: 'this article is a stub, you can help by expanding it.'
     },
     status: {
         type: Sequelize.ENUM('open', 'closed')
