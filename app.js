@@ -1,6 +1,7 @@
 const express = require('express');
 const app = express();
 const routes = require('./routes');
+const nunjucks = require('nunjucks');
 
 // Where your server and express app are being defined:
 
@@ -19,5 +20,8 @@ models.User.sync({})
         })
     })
     .catch(console.error)
+
+app.set('view engine', 'html');
+app.engine('html',nunjucks.render);
 
 app.use('/',routes);

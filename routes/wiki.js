@@ -13,7 +13,7 @@ router.post('/',(req,res,next)=>{
 );
 
 router.get('/add',(req,res,next)=>{
-    res.send('This is where you add stuff!');
+    res.render('addpage')
 }
 );
 
