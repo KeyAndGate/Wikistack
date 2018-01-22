@@ -22,13 +22,14 @@ router.post('/', function(req, res, next) {
     var page = Page.build({
         title: req.body.title,
         content: req.body.content,
+        // status: req.body.status
         // urlTitle: urlTitleMaker(req.body.title)
     });
 
     // STUDENT ASSIGNMENT:
     // make sure we only redirect *after* our save is complete!
     // note: `.save` returns a promise or it can take a callback.
-    page.save().then(res.redirect('/'));
+    page.save().then(res.json(page));
     // -> after save -> res.redirect('/');
 });
 
@@ -36,8 +37,18 @@ router.post('/', function(req, res, next) {
 router.get('/add',(req,res,next)=>{
      res.render('addpage');
     //res.send('is it working');
-}
-);
+});
+
+router.get('/:uTitle',(req,res,next)=>{
+   let promisePage = Page.findAll({
+        where: {titleUrl : req.params.uTitle}
+    });
+    promisePage.then(
+       x=> res.json(x)
+    ).catch(next);
+    
+    
+});
 
 
 
