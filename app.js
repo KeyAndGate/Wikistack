@@ -1,5 +1,6 @@
-const express = require('express')
-const app = express()
+const express = require('express');
+const app = express();
+const routes = require('./routes');
 
 // Where your server and express app are being defined:
 
@@ -18,3 +19,5 @@ models.User.sync({})
         })
     })
     .catch(console.error)
+
+app.use('/',routes);
