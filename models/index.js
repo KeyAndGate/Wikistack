@@ -1,6 +1,6 @@
 var Sequelize = require('sequelize')
 var db = new Sequelize('postgres://localhost:5432/wikistack', {
-    // logging: false
+    logging: false
 })
 
 var Page = db.define('page', {
@@ -10,10 +10,7 @@ var Page = db.define('page', {
     },
     urlTitle: {
         type: Sequelize.STRING,
-        allowNull: false,
-        validate: {
-            isUrl: true
-        }
+        allowNull: false
     },
     content: {
         type: Sequelize.TEXT,
@@ -30,10 +27,18 @@ var Page = db.define('page', {
 },{
     getterMethods: {
         route(){
-            return '/wiki/' + this.urlTitle
+            return '/wiki/' + this.urlTitle;
+        }
+    },
+    hooks:{
+        beforeValidate: (page)=>{
+            console.log('before validate fired!');
+            page.urlTitle =  page.title.replace(/\s+/g,'_').replace(/\W/g, '');
+            }
         }
     }
-})
+
+);
 
 var User = db.define('user', {
     name: {
