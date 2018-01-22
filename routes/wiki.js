@@ -41,10 +41,13 @@ router.get('/add',(req,res,next)=>{
 
 router.get('/:uTitle',(req,res,next)=>{
    let promisePage = Page.findAll({
-        where: {titleUrl : req.params.uTitle}
+        where: {urlTitle : req.params.uTitle}
     });
     promisePage.then(
-       x=> res.json(x)
+        page => {
+            console.log(page[0]['dataValues']);
+            res.render('wikipage', { p: page[0]['dataValues'] });
+        }
     ).catch(next);
     
     
