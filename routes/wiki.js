@@ -21,7 +21,8 @@ router.post('/', function(req, res, next) {
 
     var page = Page.build({
         title: req.body.title,
-        content: req.body.content
+        content: req.body.content,
+        // urlTitle: urlTitleMaker(req.body.title)
     });
 
     // STUDENT ASSIGNMENT:
