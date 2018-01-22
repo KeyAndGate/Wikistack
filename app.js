@@ -1,7 +1,9 @@
 const express = require('express');
 const app = express();
-const routes = require('./routes');
 const nunjucks = require('nunjucks');
+const bodyParser = require('body-parser');
+app.use(bodyParser.urlencoded( {extended: false} ));
+const routes = require('./routes');
 
 // Where your server and express app are being defined:
 
