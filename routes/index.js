@@ -4,7 +4,6 @@ const wiki = require('./wiki.js');
 const user = require('./user.js');
 
 router.use('/wiki/',wiki);
-
 router.use('/user/',user);
 
 

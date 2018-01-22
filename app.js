@@ -21,7 +21,21 @@ models.User.sync({})
     })
     .catch(console.error)
 
+nunjucks.configure('views');
+
+// if in the browser, you probably want to use an absolute URL
+nunjucks.configure('/views');
+
+nunjucks.configure({ autoescape: true });
+
+nunjucks.configure('views', {
+    autoescape: true,
+    express: app,
+    watch: true
+});
+    
+    var env = nunjucks.configure('views');    
 app.set('view engine', 'html');
 app.engine('html',nunjucks.render);
 
-app.use('/',routes);
+app.use('/', routes);

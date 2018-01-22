@@ -3,7 +3,7 @@ const router = express.Router();
 
 
 router.get('/',(req,res,next)=>{
-    res.send('hello wikiStack!');
+    res.render('wikipage');
 }
 );
 
@@ -13,9 +13,12 @@ router.post('/',(req,res,next)=>{
 );
 
 router.get('/add',(req,res,next)=>{
-    res.render('addpage')
+     res.render('addpage');
+    //res.send('is it working');
 }
 );
+
+module.exports = router;
 
 
 
